@@ -13,7 +13,6 @@ import { User } from 'src/auth/Schema/user-schema';
 @Controller('book')
 export class BookController {
     constructor(private bookService:BookService) {};
-
     @Get()
     async findBooks(@Query() query: ExpressQuery):Promise<Book[]>{
         const books = await this.bookService.findAll(query);
@@ -32,7 +31,7 @@ export class BookController {
         return await this.bookService.create(book,req.user);
     }
 
-    
+
     @Put('/:id')
     async updateBookId(@Param('id') id:string,@Body() book:UpdateRequestDto):Promise<Book>{
         

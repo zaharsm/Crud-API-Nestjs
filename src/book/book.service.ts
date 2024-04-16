@@ -16,12 +16,12 @@ export class BookService {
     public async findAll(query:Query):Promise<Book[]>{
         console.log(query)
 
-        let resPerPage = 2
+        let resultPerPage = 4;
         let currentPage = Number(query.page) || 1;
-        let skip = resPerPage * (currentPage - 1);
+        let skip = resultPerPage * (currentPage - 1);
 
         const keyword = query.keyword ? {
-            title :{
+            category :{
                 $regex : query.keyword,
                 $options : 'i'
             },
@@ -35,13 +35,13 @@ export class BookService {
         }:{}
         const book = (await this.bookModel
             .find({...keyword,...author})
-            .limit(resPerPage)
-            .skip(skip));
+            .limit(resultPerPage)
+            .skip(skip)
+            );
         return book;
     }
 
     public async create(book:Book,user:User):Promise<Book>{
-
         const data = Object.assign(book,{user:user._id})
         const books = await this.bookModel.create(book);
         return books;

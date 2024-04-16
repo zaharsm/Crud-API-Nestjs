@@ -6,7 +6,6 @@ import { Theme } from "src/schemas/theme.schemas";
 
 @Schema({collection: "actyv-entity", timestamps:true}) 
 
-
 export class ActyvEntity extends BaseEntity{
     constructor(self: object) {
         super();

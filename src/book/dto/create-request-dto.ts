@@ -3,7 +3,6 @@ import { Category } from "../Schema/book.schema";
 import { User } from "src/auth/Schema/user-schema";
 
 export class createRequestDto {
-
      @IsNotEmpty()
      @IsString()
      title:string;
